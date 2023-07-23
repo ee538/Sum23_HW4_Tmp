@@ -1,0 +1,48 @@
+# Address sanitizer configuration.
+# ASAN_SYMBOLIZER_PATH=/usr/local/Cellar/llvm/13.0.0_1/bin/llvm-symbolizer
+
+# Address sanitizer config
+# Use with bazel run --config=asan or lsan
+build:asan --strip=never
+build:asan --copt -fsanitize=address
+build:asan --copt -DADDRESS_SANITIZER
+build:asan --copt -O0
+build:asan --copt -g
+build:asan --copt -fno-omit-frame-pointer
+build:asan --linkopt -fsanitize=address
+build:asan --sandbox_debug
+build:asan --spawn_strategy=standalone
+
+# undefined behavior sanitizer config
+build:ubsan --strip=never
+build:ubsan --copt -fsanitize=undefined
+build:ubsan --copt -DADDRESS_SANITIZER
+build:ubsan --copt -O0
+build:ubsan --copt -g
+build:ubsan --copt -fno-omit-frame-pointer
+build:ubsan --linkopt -fsanitize=undefined
+build:ubsan --sandbox_debug
+build:ubsan --spawn_strategy=standalone
+
+build --cxxopt='--std=c++17' --cxxopt='-Wall' --cxxopt='-pedantic' \
+  --cxxopt='-Wno-undef' \
+  --cxxopt='-Wno-used-but-marked-unused' \
+  --cxxopt='-Wno-shadow-field-in-constructor' \
+  --cxxopt='-Wno-header-hygiene' \
+  --cxxopt='-Wno-switch-enum' \
+  --cxxopt='-Wno-signed-enum-bitfield' \
+  --cxxopt='-Wno-deprecated-register' \
+  --cxxopt='-Wno-c++98-compat' \
+  --cxxopt='-Wno-c++98-compat-pedantic' \
+  --cxxopt='-Wno-c++98-c++11-compat-pedantic' \
+  --cxxopt='-Wno-nested-anon-types' \
+  --cxxopt='-Wno-gnu-anonymous-struct' \
+  --cxxopt='-Wno-missing-prototypes' \
+  --cxxopt='-Wno-documentation' \
+  --cxxopt='-Wno-documentation-unknown-command' \
+  --cxxopt='-Wno-weak-vtables' \
+  --cxxopt='-Wno-unused-const-variable' \
+  --cxxopt='-Wno-format-nonliteral' \
+  --cxxopt='-Wno-global-constructors' \
+  --cxxopt='-Wno-exit-time-destructors' \
+  --cxxopt='-Wno-error=padded'
