@@ -48,3 +48,12 @@ void PrintCollection(std::string_view name, T input, bool add_new_line = true) {
  */
 
 std::vector<int> ProductOfKHighestNumbers(const std::vector<int> &input, int k);
+
+
+// hint:
+// A similar question was covered in a recent discussion!
+// use a *min* heap
+// init a variable for product of numbers
+// iterate every element in the input and add to the priority queue
+// check the size of the pq, if > k, pop the top element, also divide the top element's value from the product
+// push the product to the result vector
