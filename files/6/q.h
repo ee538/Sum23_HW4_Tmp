@@ -77,3 +77,6 @@ Output:
 
 */
 int NumConnectedComponents(std::vector<std::vector<char>>& maze);
+
+
+// this was covered in last discussion
