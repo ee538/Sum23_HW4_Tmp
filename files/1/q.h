@@ -40,3 +40,14 @@ int FindNumberOfUniquePaths(const std::vector<std::vector<int>> &grid,
                             const std::pair<int, int> end);
 
 #endif /* FILES_2_Q */
+
+
+// hint
+// method 1: recursion
+// 1. handle corner cases
+// 2. recursion relationship:
+// #unique paths at position start (i, j) = #unique paths at (i, j+1) + #unique paths at (i+1, j)
+// notice boundary condition and if the position can be accessed
+
+// method 2: 2D dynamic programming
+// modification from https://leetcode.com/problems/unique-paths-ii/
