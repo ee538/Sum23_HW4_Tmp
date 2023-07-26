@@ -126,3 +126,75 @@ class Graph {
 };
 
 //-----------------------------------------------------------------------------
+
+// hints
+// implement DFS_helper first so you can re-use it in other functions
+// in DFS_helper
+//    'marks' is to recorded the mapping between node_number and whether it has been visited before or not
+//    'visited' is to record the nodes that have been visited
+  
+// std::vector<int> DFS(int root);
+//    use DFS_helper
+
+// std::vector<int> DFSAll()
+//  Iterate all elements (e) in adjacency_list_
+//  If the current node (e.first) has not been visited before
+//    call DFS_helper with e.first as input
+// Finally, return 'visited'
+
+// bool Graph::IsPathBetweenNodes(int i, int j) 
+//  use DFS_helper, return marks[j]
+
+// bool IsConnected();
+//   If call DFS_helper on for every node in adjacency_list_, if for any of the nodes, 
+//    marks.size() != adjacency_list_.size() after DFS_helper, it means there are nodes 
+//    not visited, and are disconnected
+// 
+//   To iterate the nodes, use
+//         'for(auto e: adjacency_list_)'
+//   e.first is just the current node we need to traverse
+
+// In BFS_helper
+//    it is the usual BFS + keeping track of
+//        the distance between root & current node ('distance')
+//        the parent of the current node ('previous')
+//    This can be achieved by distance[cur_node] = distance[parent] + 1, and previous[cur_node] = parent
+//    For root, we have distance[root] = 0, and previous[root] = -1
+
+// BFSReturnValue Graph::BFS(int root)
+//  First call BFS_helper
+//  Then init an instance of 'BFSReturnValue'. We can asssign 'previous' and 'visited' from BFS_helper to the struct. The last 
+//  element we need is 'path'. We can obtain 'path' by iterating every node in the adjacency list and collect information from
+//  'previus'
+//  To iterate the nodes, use
+//         'for(auto e: adjacency_list_)'
+//  e.first is just the current node we need to traverse
+//  
+//  We can construct the path from back to front from 'previous', and finally use std::reverse to reverse the order
+
+
+// Check Cycle part: first implement ReachesACycleHelper
+// bool Graph::ReachesACycleHelper(int start_node,
+//                                 std::map<int, NodeStatus> &status)
+// method: recursion, core idea: find if there is a path so that the nodes are all in the Visting status
+//  First: handle base cases: 1. if the status of start_node is Visiting
+//                       2. if the status of start_node is Visited
+//  Set the start_node to be Visiting
+//  Iterate all the neighbors of start_node and run ReachesACycleHelper recursively on the neighbor node
+//      if ReachesACycleHelper can return true, then there is a cycle
+//  Set the status of start_node to be Visited
+//  There is no cycle from start_node
+
+// bool Graph::ReachesACycle(int start_node)
+//    simply call ReachesACycleHelper
+
+// bool Graph::HasCycle();
+// Iterate every node and its neighbors in the adjacency_list_
+// For any node that is of status "Unvisited", if ReachesACycleHelper returns true with it, then there is 
+//    a cycle in the graph
+
+// bool Graph::IsBidirectional()
+// bidirectional means for every node, it is also in the neighbor list of every of its neighbors
+// Therefore, we can use two for-loops to iterate every node, and every neighbor of the node
+//    We can use std::find to check if the current node is in the neighbor list of any of the neigbor
+// If not, it's not bidirectional
