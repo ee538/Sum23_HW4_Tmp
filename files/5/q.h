@@ -83,3 +83,17 @@ TEST(HikerPathTest, SimpleMaze) {
 
 */
 std::vector<std::vector<int>> HikerPath(std::vector<std::vector<int>>& maze);
+
+
+// hint:
+// 
+// Backtracking
+// First, handle corner cases
+// Second, When start the backtracking / recursion process, rememebr to mark the currect grid as "visited"
+// Record all possible paths using a 3D vector (var1)
+// Keep traversing its 4-directional neighbors if they are within the boundary and have not been visitied before
+// Pop the last element out from the current path if a recursion is finished and goes back to last one
+// When it reaches the destination, add the current path to var1
+// Finally, check the size of var1. If it is empty, return {{-1, -1}}. Otherwise, return the first element
+// 
+// It can be easier if write a helper function
