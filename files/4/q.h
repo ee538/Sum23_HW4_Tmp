@@ -154,3 +154,6 @@ class StudentMaxHeap {
 // Sorts the given input vector of students in place. The sort is in ascending
 // order based on the grades. Use heap sort!
 void HeapSort(std::vector<Student>& input);
+
+
+// lecture 5 min heap -> max heap
