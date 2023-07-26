@@ -1,4 +1,7 @@
 # HW4 EE538
+
+Hints are in the bottom of q.h files
+
 ## University of Southern California
 ## Instructor: Arash Saifhashemi
 
